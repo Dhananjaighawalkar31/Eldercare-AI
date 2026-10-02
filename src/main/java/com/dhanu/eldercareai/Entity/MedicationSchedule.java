@@ -21,7 +21,6 @@ public class MedicationSchedule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private long dailyLogId;
 
     @ManyToOne
     @JoinColumn(name = "elder_id")

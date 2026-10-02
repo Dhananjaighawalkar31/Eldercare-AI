@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Time;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Entity
@@ -24,10 +25,13 @@ public class AlertHistory {
     @JoinColumn(name ="elder_id")
     private Elder elder;
 
-    private LocalTime triggeredAt;
-    private String severity;
-    private String source;
+    private LocalDateTime triggeredAt;
+    @Enumerated(EnumType.STRING)
+    private Severity severity;
+
+    @Enumerated(EnumType.STRING)
+    private AlertSource source;
     private String explanation;
     private boolean resolved;
-    private LocalTime resolvedAt;
+    private LocalDateTime resolvedAt;
 }
