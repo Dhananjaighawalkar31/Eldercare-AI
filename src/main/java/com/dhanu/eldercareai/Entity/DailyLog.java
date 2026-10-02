@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 
@@ -27,7 +28,7 @@ public class DailyLog {
     @JoinColumn(name="elder_id")
     private Elder elder;
 
-    private Date logGate;
+    private LocalDate logDate;
     private LocalTime wakeTime;
     private LocalTime sleepTime;
     private int activityCount;
