@@ -20,11 +20,12 @@ public class MedicationLog {
 
     @ManyToOne
     @JoinColumn(name = "daily_log_id")
-    private DailyLog dailyLogId;
+    private DailyLog dailyLog;
 
     @ManyToOne
     @JoinColumn(name="medication_schedule_id")
-    private MedicationSchedule medicationScheduleId;
+
+    private MedicationSchedule medicationSchedule;
 
     private boolean wasTaken;
 }
