@@ -12,9 +12,12 @@ public class ElderService {
     private final ElderRepository elderRepository;
 
     public Elder createElder(Elder elder) {
+        return elderRepository.save(elder);
+    }
+    public Elder getElder(Long id){
 
-
-            return elderRepository.save(elder);
+            return elderRepository.findById(id)
+                    .orElseThrow( () -> new RuntimeException("Elder not found with id: " + id));
 
     }
 }
