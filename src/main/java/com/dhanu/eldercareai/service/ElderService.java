@@ -5,6 +5,8 @@ import com.dhanu.eldercareai.repository.ElderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 
@@ -19,5 +21,8 @@ public class ElderService {
             return elderRepository.findById(id)
                     .orElseThrow( () -> new RuntimeException("Elder not found with id: " + id));
 
+    }
+    public List<Elder> getAllElders(){
+        return elderRepository.findAll();
     }
 }
