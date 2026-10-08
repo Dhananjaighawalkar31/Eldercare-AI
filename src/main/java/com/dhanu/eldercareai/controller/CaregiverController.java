@@ -1,6 +1,7 @@
 package com.dhanu.eldercareai.controller;
 
 import com.dhanu.eldercareai.Entity.Caregiver;
+import com.dhanu.eldercareai.Entity.Elder;
 import com.dhanu.eldercareai.service.CaregiverService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -25,4 +26,5 @@ public class CaregiverController {
     public Caregiver getCaregiverById(@PathVariable Long id){
         return caregiverService.getCaregiverById(id);
     }
+
 }

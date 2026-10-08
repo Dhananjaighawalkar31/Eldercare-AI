@@ -25,4 +25,8 @@ public class ElderController {
     public List<Elder> getAllElders(){
         return elderService.getAllElders();
     }
+    @PostMapping("/{elderId}/caregivers/{caregiverId}")
+    public Elder linkCaregiver(@PathVariable Long elderId,@PathVariable Long caregiverId){
+        return elderService.addCaregiverToElder(elderId,caregiverId);
+    }
 }
