@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -29,15 +30,22 @@ public class ElderController {
 
     }
     @GetMapping("/{id}")
-    public Elder getElderById(@PathVariable Long id){
-        return elderService.getElder(id);
+    public ElderResponse getElderById(@PathVariable Long id){
+        Elder elder =  elderService.getElder(id);
+        return new ElderResponse(elder.getId(),elder.getName(),elder.getDateOfBirth(),elder.getAddress(),elder.getBaselineWakeTime(),elder.getBaselineSleepTime());
     }
     @GetMapping
-    public List<Elder> getAllElders(){
-        return elderService.getAllElders();
+    public List<ElderResponse> getAllElders(){
+        List<Elder> li =  elderService.getAllElders();
+        List<ElderResponse> result = new ArrayList<>();
+        for(Elder elder : li){
+            result.add(new ElderResponse(elder.getId(),elder.getName(),elder.getDateOfBirth(),elder.getAddress(),elder.getBaselineWakeTime(),elder.getBaselineSleepTime()));
+        }
+        return result;
     }
     @PostMapping("/{elderId}/caregivers/{caregiverId}")
-    public Elder linkCaregiver(@PathVariable Long elderId,@PathVariable Long caregiverId){
-        return elderService.addCaregiverToElder(elderId,caregiverId);
+    public ElderResponse linkCaregiver(@PathVariable Long elderId,@PathVariable Long caregiverId){
+        Elder elder =  elderService.addCaregiverToElder(elderId,caregiverId);
+        return new ElderResponse(elder.getId(),elder.getName(),elder.getDateOfBirth(),elder.getAddress(),elder.getBaselineWakeTime(),elder.getBaselineSleepTime());
     }
 }
