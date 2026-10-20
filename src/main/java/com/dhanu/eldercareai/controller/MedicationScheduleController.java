@@ -10,6 +10,9 @@ import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping
@@ -30,5 +33,15 @@ public class MedicationScheduleController {
                 saved.getDosage()
         );
 
+    }
+    @GetMapping("/api/elders/{elderId}/medications")
+    public List<MedicationScheduleResponse> getSchedulesForElder(@PathVariable Long elderId){
+        List<MedicationSchedule> schedulesForElder = medicationScheduleService.getSchedulesForElder(elderId);
+        List<MedicationScheduleResponse> li = new ArrayList<>();
+        for(MedicationSchedule schedules : schedulesForElder){
+            li.add(new MedicationScheduleResponse(schedules.getId(),schedules.getElder().getId(), schedules.getMedicationName(),schedules.getScheduledTime(), schedules.getDosage()));
+
+        }
+        return li;
     }
 }
