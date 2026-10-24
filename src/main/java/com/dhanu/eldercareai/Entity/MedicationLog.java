@@ -27,5 +27,5 @@ public class MedicationLog {
 
     private MedicationSchedule medicationSchedule;
 
-    private boolean wasTaken;
+    private Boolean wasTaken;
 }
