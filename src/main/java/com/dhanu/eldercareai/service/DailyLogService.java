@@ -13,6 +13,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class DailyLogService {
@@ -43,5 +46,13 @@ public class DailyLogService {
 
         }
         return saved;
+    }
+
+    public List<DailyLog> getDailyLog(Long elderId,int days){
+        LocalDate cutOff = LocalDate.now().minusDays(days);
+        return dailyLogRepository.findByElderIdOrderByLogDateDesc(elderId)
+                .stream()
+                .filter(log -> !log.getLogDate().isBefore(cutOff))
+                .toList();
     }
 }
